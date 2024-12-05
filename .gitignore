@@ -48,6 +48,6 @@ bin/
 
 **/*.doc
 
-graalvm
+graalvm/
 
-CMakeFiles
+CMakeFiles/

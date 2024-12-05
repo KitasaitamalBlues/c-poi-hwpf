@@ -1,6 +1,6 @@
 # 第一步
 
-native-image --no-fallback --strip-debug --noconsole -H:+UnlockExperimentalVMOptions -H:-CheckToolchain -H:+AddAllCharsets  --shared -o libdoc com.hua.graalvm.SimpleDemo -cp libs/doc-all.jar
+native-image  -H:+UnlockExperimentalVMOptions -H:-CheckToolchain -H:+AddAllCharsets  --shared -o libdoc com.hua.graalvm.SimpleDemo -cp libs/doc-all.jar --no-fallback --strip-debug --noconsole
 
 拷贝以上所得产物到根目录下 graalvm
 
