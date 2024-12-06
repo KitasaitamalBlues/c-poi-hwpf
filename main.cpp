@@ -1,11 +1,16 @@
-#include "graalvm/libdoc.h"
+#include "graalvm/doc.h"
 #include "read_doc.h"
+#include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
 // #include "java/libenvmap.h"
-
+extern "C"
+{
+    EXPORT_SYMBOL char *read_doc(char *f);
+}
 int main(int argc, char **argv)
 {
     const char *f = "C:/Users/hua/Desktop/人员信息表.doc";
@@ -21,8 +26,14 @@ int main(int argc, char **argv)
     std::cout << res;
 
     graal_tear_down_isolate(thread);
+
+    auto res1 = read_doc(const_cast<char *>(f));
+
+    std::cout << res1;
+    std::cout << "end";
 }
 
+void *mem_doc_addr = 0;
 extern "C"
 {
     EXPORT_SYMBOL char *read_doc(char *f)
@@ -37,8 +48,18 @@ extern "C"
         }
         auto res = readDOC(thread, f);
 
-        graal_tear_down_isolate(thread);
+        int length = strlen(res);
 
-        return res;
+        char *res_copy = new char[length + 1]{};
+
+        memcpy(res_copy, res, length);
+
+        graal_tear_down_isolate(thread);
+        if (mem_doc_addr != nullptr)
+        {
+            std::free(mem_doc_addr);
+            mem_doc_addr = nullptr;
+        }
+        return res_copy;
     }
 }

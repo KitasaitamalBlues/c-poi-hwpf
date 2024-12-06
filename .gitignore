@@ -44,10 +44,12 @@ bin/
 
 .cache/
 
-**/build/
 
 **/*.doc
 
 graalvm/
 
 CMakeFiles/
+**/build/*
+
+!java/build/libs/doc-all.jar

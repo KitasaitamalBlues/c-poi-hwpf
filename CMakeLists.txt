@@ -45,15 +45,15 @@ add_custom_command(
 set(BINARY_NAME read_doc)
 add_executable(${BINARY_NAME} "main.cpp") 
 
-set(LIBRARY_NAME "libdocwarpper")
+set(LIBRARY_NAME "docwarpper")
 add_library(${LIBRARY_NAME} SHARED "main.cpp")
 target_include_directories(${BINARY_NAME} PRIVATE "graalvm")
-target_link_directories(${BINARY_NAME} PRIVATE "C:/Users/hua/VSCodeProjects/read_doc_dll/graalvm")
-target_link_libraries(${BINARY_NAME} "libdoc")
+target_link_directories(${BINARY_NAME} PRIVATE "graalvm")
+target_link_libraries(${BINARY_NAME} "doc")
 
 target_include_directories(${LIBRARY_NAME} PRIVATE "graalvm")
-target_link_directories(${LIBRARY_NAME} PRIVATE "C:/Users/hua/VSCodeProjects/read_doc_dll/graalvm")
-target_link_libraries(${LIBRARY_NAME} "libdoc")
+target_link_directories(${LIBRARY_NAME} PRIVATE "graalvm")
+target_link_libraries(${LIBRARY_NAME} "doc")
 # target_include_directories(${BINARY_NAME} )
 # target_include_directories(${BINARY_NAME} )
 
